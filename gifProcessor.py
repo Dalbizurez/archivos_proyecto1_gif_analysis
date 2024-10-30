@@ -7,15 +7,15 @@ def decodeGif(gifBytes:list[bytes]):
     width = int.from_bytes(gifBytes[7:5:-1])
     height = int.from_bytes(gifBytes[9:7:-1])
     noOfColors = getNoOfColors(bin(gifBytes[10]))
-    compressionType = 0 
-    format = 0
+    compressionType = "LZW"
+    format = "Little-endian"
     background = gifBytes[11]
     noOfImages = 0
 
     index = 13 + noOfColors*3
     cont = 0
 
-    noOfImages = gifBytes.count("0x44")
+    noOfImages = gifBytes.count(44)
 
     index = len(gifBytes)
 
