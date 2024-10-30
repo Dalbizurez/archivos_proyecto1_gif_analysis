@@ -12,7 +12,10 @@ class Gif:
         self.dateModified = gifInfo[8]
         self.commnets = gifInfo[9]
 
+    def __repr__(self) -> str:
+        return f"{self.path} {self.version}"
+
     def __str__(self) -> str:
-        return f"{self.path} {self.version} {self.size}"
+        return f"{self.path},{self.version},{self.size},{self.noOfColors},{self.compressionType},{self.numFormat},{self.backgroundColor},{self.noOfImages},{self.dateCreation},{self.dateModified},{self.commnets}"
 
     
