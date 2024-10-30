@@ -14,6 +14,11 @@ def decodeGif(gifBytes:list[bytes]):
 
     index = 13 + noOfColors*3
     cont = 0
+
+    noOfImages = gifBytes.count("0x44")
+
+    index = len(gifBytes)
+
     while (index < len(gifBytes)):
         if gifBytes[index] == 33:
             index += 2 # Block size
@@ -38,9 +43,9 @@ def decodeGif(gifBytes:list[bytes]):
             print("cont")
             break
 
-    print(index, len(gifBytes), gifBytes[index])
-
     comments = "Not supported"
+#    print(index, len(gifBytes), gifBytes[index])
+
 
     return version, f"{width}x{height}", noOfColors, compressionType, format, background, noOfImages, comments
 
