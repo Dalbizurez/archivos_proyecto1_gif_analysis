@@ -1,4 +1,11 @@
 import os
+import pickle
+import datetime
+
+from gif import Gif
+
+APP_PATH_FILE = "./gifapp.config"
+APP_FILE = "./gifapp.g"
 
 def getGifs(path:str):
     array = []
@@ -14,7 +21,7 @@ def getGifs(path:str):
 
 def getTimes(path:str):
     try:
-        return (os.path.getctime(path), os.path.getmtime(path))
+        return (datetime.datetime.fromtimestamp(os.path.getctime(path)), datetime.datetime.fromtimestamp(os.path.getmtime(path)))
     except Exception as e:
         print(e)
 
@@ -27,3 +34,36 @@ def getBytes(filePaths:list[str]):
         except Exception as e:
             print(e)
     return files
+
+def writeAppFile(gifs:list[Gif]):
+    try:
+#        with open(APP_PATH_FILE, "a") as file:
+#            file.write(path)
+        with open(APP_FILE, "wb") as gif_file:
+            pickle.dump(gifs, gif_file)
+    except Exception as e:
+        print(e)
+
+def readAppFile():
+    try:
+        with open(APP_FILE, "rb") as file:
+            return pickle.load(file)
+    except Exception as e:
+        print(e)
+    return None
+
+def readAppPath():
+    try:
+        with open(APP_PATH_FILE, "r") as file:
+            return file.read().splitlines()
+    except Exception as e:
+        print(e)
+    return None
+
+def addPath(path:str):
+    try:
+        with open(APP_PATH_FILE, "a+") as file:
+            if path not in file.read():
+                file.write(f"{path}\n")
+    except Exception as e:
+        print(e)
