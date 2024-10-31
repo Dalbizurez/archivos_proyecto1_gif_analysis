@@ -67,3 +67,12 @@ def addPath(path:str):
                 file.write(f"{path}\n")
     except Exception as e:
         print(e)
+
+def clearAppFiles():
+    try:
+        with open(APP_PATH_FILE, "w") as file:
+            file.write("")
+        with open(APP_FILE, "wb") as file:
+            file.write(b"")
+    except Exception as e:
+        print(e)

@@ -26,6 +26,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionAgregar_ruta.triggered.connect(lambda:self.chooseDir())
         self.actionAgregar_ruta.triggered.connect(lambda:self.setGifs(controller.getGifs()))
 
+        self.actionLimpiar_cache.triggered.connect(lambda:controller.clearHistory())
+        self.actionLimpiar_cache.triggered.connect(lambda:self.chooseDir())
+        self.actionLimpiar_cache.triggered.connect(lambda:self.gifs.clear())
+        self.actionLimpiar_cache.triggered.connect(lambda:self.setGifs(controller.getGifs()))
 
 
     def setGifs(self, gifs:list[Gif]):
@@ -33,6 +37,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.lblGif.setText("No hay gifs en la ubicación seleccionada")
             self.btnNext.setEnabled(False)
             self.btnPrev.setEnabled(False)
+            self.tblMetadata.clearContents()
             return
         self.btnNext.setEnabled(True)
         self.btnPrev.setEnabled(True)

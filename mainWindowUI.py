@@ -78,7 +78,10 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.actionAgregar_ruta = QtGui.QAction(parent=MainWindow)
         self.actionAgregar_ruta.setObjectName("actionAgregar_ruta")
+        self.actionLimpiar_cache = QtGui.QAction(parent=MainWindow)
+        self.actionLimpiar_cache.setObjectName("actionLimpiar_cache")
         self.menuFile.addAction(self.actionAgregar_ruta)
+        self.menuFile.addAction(self.actionLimpiar_cache)
         self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -91,3 +94,4 @@ class Ui_MainWindow(object):
         self.btnNext.setText(_translate("MainWindow", ">>"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionAgregar_ruta.setText(_translate("MainWindow", "Agregar ruta"))
+        self.actionLimpiar_cache.setText(_translate("MainWindow", "Limpiar cache"))

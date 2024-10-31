@@ -7,7 +7,8 @@ def setDir(path):
     fileHandler.addPath(path)
 
 def saveGifs(gifs):
-    fileHandler.writeAppFile(gifs)
+    if len(gifs) > 0:
+        fileHandler.writeAppFile(gifs)
 
 def getGifs():
     gifs = fileHandler.readAppFile()
@@ -40,3 +41,6 @@ def getGifObject(path:str, meta:list[str]):
     info.append(meta[7])
 
     return Gif(path, info)
+
+def clearHistory():
+    fileHandler.clearAppFiles()
