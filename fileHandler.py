@@ -7,14 +7,14 @@ from gif import Gif
 APP_PATH_FILE = "./gifapp.config"
 APP_FILE = "./gifapp.g"
 
-def getGifs(path:str):
+def getGifPaths(path:str):
     array = []
     if not os.path.isabs(path):
         path = os.path.expanduser(f"~\{path}")
     for file in os.listdir(path):
         fullPath = path + "\\" + file
         if not os.path.isfile(fullPath):
-            array.extend(getGifs(fullPath))
+            array.extend(getGifPaths(fullPath))
         if os.path.isfile(fullPath) and file.endswith(".gif"):
             array.append(fullPath)
     return array
@@ -25,7 +25,7 @@ def getTimes(path:str):
     except Exception as e:
         print(e)
 
-def getBytes(filePaths:list[str]):
+def getGifBytes(filePaths:list[str]):
     files = []
     for path in filePaths:
         try:

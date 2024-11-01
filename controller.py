@@ -16,8 +16,8 @@ def getGifs():
         try:
             gifs = []
             for path in fileHandler.readAppPath():
-                gifPaths = fileHandler.getGifs(path)
-                byteArray = fileHandler.getBytes(gifPaths)
+                gifPaths = fileHandler.getGifPaths(path)
+                byteArray = fileHandler.getGifBytes(gifPaths)
                 for array in byteArray:
                     info = gifProcessor.decodeGif(array)
                     gifs.append(getGifObject(gifPaths[byteArray.index(array)], info))
